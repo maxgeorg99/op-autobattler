@@ -18,7 +18,7 @@ stream_0/stream = ExtResource("1_4y5el")
 
 [resource]
 script = ExtResource("1_fyrnm")
-name = "Robin"
+name = "Lysop"
 traits = Array[ExtResource("2_7qit6")]([ExtResource("3_8vdjq"), ExtResource("4_4e7ve")])
 pool_count = 20
 skin_coordinates = Vector2i(2, 0)

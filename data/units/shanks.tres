@@ -7,10 +7,16 @@
 
 [resource]
 script = ExtResource("1_emb4c")
-name = "Harry"
+name = "Shanks"
 rarity = 1
 gold_cost = 2
 tier = 1
 traits = Array[ExtResource("2_m1u3i")]([ExtResource("3_yc2ux"), ExtResource("4_yjlm7")])
 pool_count = 5
 skin_coordinates = Vector2i(2, 2)
+max_health = Array[int]([20, 30, 45])
+max_mana = 40
+starting_mana = 10
+attack_damage = Array[int]([3, 5, 7])
+attack_speed = 0.85
+attack_range = 1

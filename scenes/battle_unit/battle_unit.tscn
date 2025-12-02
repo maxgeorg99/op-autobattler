@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bq4gnwctciu45" path="res://scenes/battle_unit/battle_unit.gd" id="1_rmpo8"]
 [ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_tah2m"]
-[ext_resource type="Resource" uid="uid://dyqvoxv3vg6hp" path="res://data/units/bjorn.tres" id="2_1myfu"]
+[ext_resource type="Resource" uid="uid://dyqvoxv3vg6hp" path="res://data/units/luffy.tres" id="2_1myfu"]
 [ext_resource type="Script" uid="uid://bpfvys3yg0516" path="res://components/packed_sprite2d.gd" id="2_rmpo8"]
 [ext_resource type="PackedScene" uid="uid://di1627tggvh6r" path="res://scenes/health_bar/health_bar.tscn" id="3_4s270"]
 [ext_resource type="PackedScene" uid="uid://c7pf7qph33dgb" path="res://scenes/mana_bar/mana_bar.tscn" id="4_u0yfu"]
@@ -242,6 +242,7 @@ offset_right = -6.0
 offset_bottom = -11.0
 
 [node name="FSMDebugLabel" type="Label" parent="."]
+visible = false
 offset_left = -65.0
 offset_top = -47.0
 offset_right = 65.0
