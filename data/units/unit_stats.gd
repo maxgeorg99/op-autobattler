@@ -77,6 +77,8 @@ func get_gold_value() -> int:
 
 
 func get_max_health() -> int:
+	if max_health.is_empty() or tier - 1 >= max_health.size():
+		return 0
 	return max_health[tier-1]
 
 
@@ -85,6 +87,8 @@ func get_health_percentage() -> float:
 
 
 func get_attack_damage() -> int:
+	if attack_damage.is_empty() or tier - 1 >= attack_damage.size():
+		return 0
 	return attack_damage[tier-1]
 
 

@@ -51,8 +51,12 @@ func get_active_bonus(unit_count: int) -> TraitBonus:
 	var reached_levels := _get_reached_levels(unit_count)
 	if reached_levels.is_empty():
 		return null
-	
-	return trait_bonuses[reached_levels.size()-1]
+
+	var bonus_index := reached_levels.size() - 1
+	if bonus_index >= trait_bonuses.size():
+		return null
+
+	return trait_bonuses[bonus_index]
 
 
 func get_levels_bbcode(unit_count: int) -> String:

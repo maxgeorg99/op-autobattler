@@ -47,7 +47,8 @@ func _add_trait_bonuses(new_unit: BattleUnit) -> void:
 	for unit_trait: Trait in new_unit.stats.traits:
 		if trait_tracker.active_traits.has(unit_trait):
 			var trait_bonus := unit_trait.get_active_bonus(trait_tracker.unique_traits[unit_trait])
-			trait_bonus.apply_bonus(new_unit)
+			if trait_bonus:
+				trait_bonus.apply_bonus(new_unit)
 
 
 func _clean_up_fight() -> void:

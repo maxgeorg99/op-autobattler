@@ -16,6 +16,8 @@ func _ready() -> void:
 		area_exited.connect(_on_area_exited)
 		drag_and_drop.drag_canceled.connect(_on_drag_canceled)
 		drag_and_drop.dropped.connect(_on_dropped)
+		mouse_entered.connect(_on_mouse_entered)
+		mouse_exited.connect(_on_mouse_exited)
 
 
 func _set_item(new_item: Item) -> void:
@@ -44,7 +46,17 @@ func _on_dropped(starting_position: Vector2) -> void:
 	if hovered_unit:
 		var item_handler: ItemHandler = hovered_unit.item_handler
 		if item_handler and item_handler.add_item(item):
+			TooltipManager.hide_tooltip()
 			queue_free()
 			return
-	
+
 	global_position = starting_position
+
+
+func _on_mouse_entered() -> void:
+	if item:
+		TooltipManager.show_tooltip(item.description, global_position)
+
+
+func _on_mouse_exited() -> void:
+	TooltipManager.hide_tooltip()
