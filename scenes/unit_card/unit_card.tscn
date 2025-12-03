@@ -11,6 +11,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_lgxvb"]
 line_spacing = 0.0
 font = ExtResource("1_l8led")
+font_size = 14
 font_color = Color(0.6, 0.862745, 1, 0.729412)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqgew"]

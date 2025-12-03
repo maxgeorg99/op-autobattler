@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Trait" load_steps=5 format=3 uid="uid://ds4k44tlpqvns"]
+
+[ext_resource type="Texture2D" uid="uid://hakpdyod7nvy" path="res://assets/sprites/traits/sniper.png" id="1_q6jpb"]
+[ext_resource type="Script" uid="uid://dsyxdgrby4ar7" path="res://data/traits/trait.gd" id="1_v3ipf"]
+[ext_resource type="Script" uid="uid://bo67hppbyxnv7" path="res://data/traits/bonuses/trait_bonus.gd" id="3_sxpxi"]
+[ext_resource type="Resource" path="res://data/traits/bonuses/sniper_bonus_lvl2.tres" id="4"]
+
+[resource]
+script = ExtResource("1_v3ipf")
+name = "Sniper"
+icon = ExtResource("1_q6jpb")
+description = "[b]Sniper[/b]
+(2) Snipers gain increased attack range
+(4) All Snipers gain bonus attack damage"
+levels = 2
+unit_requirements = Array[int]([2, 4])
+trait_bonuses = Array[ExtResource("3_sxpxi")]([null, ExtResource("4")])

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Trait" load_steps=5 format=3 uid="uid://iqvqthjbv7yh"]
+
+[ext_resource type="Script" uid="uid://dsyxdgrby4ar7" path="res://data/traits/trait.gd" id="1_1iv6d"]
+[ext_resource type="Script" uid="uid://bo67hppbyxnv7" path="res://data/traits/bonuses/trait_bonus.gd" id="2"]
+[ext_resource type="Resource" path="res://data/traits/bonuses/giant_bonus_lvl1.tres" id="3"]
+[ext_resource type="Resource" path="res://data/traits/bonuses/giant_bonus_lvl2.tres" id="4"]
+
+[resource]
+script = ExtResource("1_1iv6d")
+name = "Giant"
+description = "[b]Giant[/b]
+(2) Giants gain bonus attack damage
+(4) All Giants gain increased attack speed
+(6) Giants deal critical strike damage"
+levels = 3
+unit_requirements = Array[int]([2, 4, 6])
+trait_bonuses = Array[ExtResource("2")]([ExtResource("3"), ExtResource("4"), null])

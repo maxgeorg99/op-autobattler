@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://bp143y4igd7sa" path="res://data/units/unit_stats.gd" id="1_fyrnm"]
 [ext_resource type="Script" uid="uid://dsyxdgrby4ar7" path="res://data/traits/trait.gd" id="2_7qit6"]
 [ext_resource type="PackedScene" uid="uid://6xbfap3o0lej" path="res://scenes/_effects/attack_smear_effect.tscn" id="2_def0a"]
-[ext_resource type="Resource" uid="uid://jdan3bxve344" path="res://data/traits/elf.tres" id="3_8vdjq"]
+[ext_resource type="Resource" uid="uid://jdan3bxve344" path="res://data/traits/straw_hat.tres" id="3_8vdjq"]
 [ext_resource type="PackedScene" uid="uid://f5qpqsne2aqm" path="res://scenes/_projectiles/robin_arrow.tscn" id="3_mwi2g"]
-[ext_resource type="Resource" uid="uid://ds4k44tlpqvns" path="res://data/traits/ranger.tres" id="4_4e7ve"]
+[ext_resource type="Resource" uid="uid://ds4k44tlpqvns" path="res://data/traits/sniper.tres" id="4_4e7ve"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t6fkn"]
 playback_mode = 1

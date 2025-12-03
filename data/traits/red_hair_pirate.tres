@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="Trait" load_steps=5 format=3 uid="uid://bkgurfdcihufj"]
 
 [ext_resource type="Script" uid="uid://dsyxdgrby4ar7" path="res://data/traits/trait.gd" id="1_2w4rk"]
-[ext_resource type="Texture2D" uid="uid://cmjp32ur0thqa" path="res://assets/sprites/traits/viking.png" id="1_bdbxe"]
+[ext_resource type="Texture2D" uid="uid://cmjp32ur0thqa" path="res://assets/sprites/traits/red_hair_pirate.png" id="1_bdbxe"]
 [ext_resource type="Script" uid="uid://bo67hppbyxnv7" path="res://data/traits/bonuses/trait_bonus.gd" id="3_epfqc"]
-[ext_resource type="Resource" uid="uid://cfpqm7rjyob4t" path="res://data/traits/bonuses/viking_bonus_lvl1.tres" id="4_s074d"]
+[ext_resource type="Resource" uid="uid://cfpqm7rjyob4t" path="res://data/traits/bonuses/red_hair_pirate_bonus_lvl1.tres" id="4_s074d"]
 
 [resource]
 script = ExtResource("1_2w4rk")
-name = "Viking"
+name = "Red Hair"
 icon = ExtResource("1_bdbxe")
-description = "[b]Viking[/b]
+description = "[b]Red Hair[/b]
 When HP falls below 75%, gain 70% attack speed."
 levels = 1
 unit_requirements = Array[int]([1])

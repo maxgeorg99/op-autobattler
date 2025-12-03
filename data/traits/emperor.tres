@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Trait" load_steps=4 format=3 uid="uid://clx1gl1vn35sq"]
 
-[ext_resource type="Texture2D" uid="uid://c32cyuudt3x6x" path="res://assets/sprites/traits/noble.png" id="1_3y5lp"]
+[ext_resource type="Texture2D" uid="uid://c32cyuudt3x6x" path="res://assets/sprites/traits/emperor.png" id="1_3y5lp"]
 [ext_resource type="Script" uid="uid://dsyxdgrby4ar7" path="res://data/traits/trait.gd" id="1_lye4f"]
 [ext_resource type="Script" uid="uid://bo67hppbyxnv7" path="res://data/traits/bonuses/trait_bonus.gd" id="3_tdjhl"]
 
 [resource]
 script = ExtResource("1_lye4f")
-name = "Noble"
+name = "Emperor"
 icon = ExtResource("1_3y5lp")
-description = "[b]Noble[/b]
+description = "[b]Emperor[/b]
 (1) One random ally gains +50% attack damage at the start of combat"
 unit_requirements = Array[int]([1])

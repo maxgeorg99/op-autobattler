@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqakm8biv7pa"
-path="res://.godot/imported/wizard.png-5e1cff7a0a5f3ee44c42d931f54f5b57.ctex"
+uid="uid://c32cyuudt3x6x"
+path="res://.godot/imported/emperor.png-0dc9df6b1d311509143ea7a0a7a569b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/traits/wizard.png"
-dest_files=["res://.godot/imported/wizard.png-5e1cff7a0a5f3ee44c42d931f54f5b57.ctex"]
+source_file="res://assets/sprites/traits/emperor.png"
+dest_files=["res://.godot/imported/emperor.png-0dc9df6b1d311509143ea7a0a7a569b8.ctex"]
 
 [params]
 

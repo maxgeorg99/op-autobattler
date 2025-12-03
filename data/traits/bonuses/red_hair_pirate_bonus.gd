@@ -1,4 +1,4 @@
-class_name VikingBonus
+class_name RedHairPirateBonus
 extends TraitBonus
 
 @export_range(0.01, 1.0) var hp_threshold_percent: float
@@ -15,7 +15,7 @@ func apply_bonus(battle_unit: BattleUnit) -> void:
 
 
 func _on_battle_unit_stats_changed(battle_unit: BattleUnit) -> void:
-	if as_modifier.get_value("viking_trait"):
+	if as_modifier.get_value("red_hair_pirate_trait"):
 		return
 
 	if battle_unit.stats.get_health_percentage() <= hp_threshold_percent:

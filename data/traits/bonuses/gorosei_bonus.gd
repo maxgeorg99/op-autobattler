@@ -1,4 +1,4 @@
-class_name ElfBonus
+class_name GoroseiBonus
 extends TraitBonus
 
 @export var modifiers: Dictionary[Modifier.Type, ModifierValue]

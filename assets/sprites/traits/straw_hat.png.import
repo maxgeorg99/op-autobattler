@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c32cyuudt3x6x"
-path="res://.godot/imported/noble.png-511e806c921c7b046d024e0b3b9ab4f5.ctex"
+uid="uid://b1aup08or8bao"
+path="res://.godot/imported/straw_hat.png-52b3a9b20f469b08a5c95c35f23cb3b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/traits/noble.png"
-dest_files=["res://.godot/imported/noble.png-511e806c921c7b046d024e0b3b9ab4f5.ctex"]
+source_file="res://assets/sprites/traits/straw_hat.png"
+dest_files=["res://.godot/imported/straw_hat.png-52b3a9b20f469b08a5c95c35f23cb3b3.ctex"]
 
 [params]
 

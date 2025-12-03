@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmjp32ur0thqa"
-path="res://.godot/imported/viking.png-add04a96825b7b97b52465d0db7ae313.ctex"
+uid="uid://bqakm8biv7pa"
+path="res://.godot/imported/gorosei.png-fa85e555001fd9754b245121d94e2ebe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/traits/viking.png"
-dest_files=["res://.godot/imported/viking.png-add04a96825b7b97b52465d0db7ae313.ctex"]
+source_file="res://assets/sprites/traits/gorosei.png"
+dest_files=["res://.godot/imported/gorosei.png-fa85e555001fd9754b245121d94e2ebe.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wxshjtwjoc31"
-path="res://.godot/imported/human.png-c0da217a1fe11a4a2bdc0aaa868c9f47.ctex"
+uid="uid://ctsbgkfclgei"
+path="res://.godot/imported/red_hair_pirate.png-0fcde82e51e9a4553447ba533cb2df92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/traits/human.png"
-dest_files=["res://.godot/imported/human.png-c0da217a1fe11a4a2bdc0aaa868c9f47.ctex"]
+source_file="res://assets/sprites/traits/red_hair_pirate.png"
+dest_files=["res://.godot/imported/red_hair_pirate.png-0fcde82e51e9a4553447ba533cb2df92.ctex"]
 
 [params]
 

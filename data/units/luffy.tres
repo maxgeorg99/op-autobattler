@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://tg737lwfmt14" path="res://scenes/_abilities/bjorn_swing.tscn" id="1_y5alr"]
 [ext_resource type="Script" uid="uid://dsyxdgrby4ar7" path="res://data/traits/trait.gd" id="2_v4q1r"]
 [ext_resource type="AudioStream" uid="uid://y2xuakbipa65" path="res://assets/sfx/bjorn_2.ogg" id="2_y5alr"]
-[ext_resource type="Resource" uid="uid://bekcuvjro6nqe" path="res://data/traits/fighter.tres" id="3_362j6"]
+[ext_resource type="Resource" uid="uid://jdan3bxve344" path="res://data/traits/straw_hat.tres" id="3_362j6"]
 [ext_resource type="AudioStream" uid="uid://bdseh6x313gqd" path="res://assets/sfx/bjorn_3.ogg" id="3_v1jki"]
-[ext_resource type="Resource" uid="uid://bkgurfdcihufj" path="res://data/traits/viking.tres" id="4_3x2x7"]
+[ext_resource type="Resource" uid="uid://clx1gl1vn35sq" path="res://data/traits/emperor.tres" id="4_3x2x7"]
 [ext_resource type="AudioStream" uid="uid://ookfpdkg1k3v" path="res://assets/sfx/bjorn_4.ogg" id="4_6ud85"]
 [ext_resource type="PackedScene" uid="uid://6xbfap3o0lej" path="res://scenes/_effects/attack_smear_effect.tscn" id="5_66cgf"]
 
@@ -24,7 +24,6 @@ stream_3/stream = ExtResource("4_6ud85")
 script = ExtResource("1_6fqjr")
 name = "Luffy"
 traits = Array[ExtResource("2_v4q1r")]([ExtResource("3_362j6"), ExtResource("4_3x2x7")])
-skin_coordinates = Vector2i(0, 0)
 max_health = Array[int]([40, 50, 60])
 max_mana = 50
 starting_mana = 15
