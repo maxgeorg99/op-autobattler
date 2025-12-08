@@ -26,8 +26,15 @@ var is_player1: bool = false
 var is_connected: bool = false
 
 # SpacetimeDB connection settings
-const SERVER_URL = "http://127.0.0.1:3000"
-const MODULE_NAME = "autobattler"
+const LOCAL_SERVER_URL = "http://127.0.0.1:3000"
+const MAINCLOUD_SERVER_URL = "https://maincloud.spacetimedb.com"
+const LOCAL_MODULE_NAME = "autobattler"
+const MAINCLOUD_MODULE_NAME = "autobattler-main"  # Update with your maincloud module name
+
+# Current connection mode
+var use_maincloud: bool = false
+var current_server_url: String = LOCAL_SERVER_URL
+var current_module_name: String = LOCAL_MODULE_NAME
 
 
 func _ready():
@@ -42,20 +49,42 @@ func _ready():
 	SpacetimeDB.transaction_update_received.connect(_on_transaction_update)
 	# Note: row_inserted/updated/deleted are now handled via LocalDatabase.subscribe_to_inserts/updates
 
-	# Auto-connect on startup
-	connect_to_server()
+	# Don't auto-connect - wait for auth choice
+	print("=== MultiplayerManager ready ===")
 
-	print("=== Connecting to SpacetimeDB: %s / %s ===" % [SERVER_URL, MODULE_NAME])
+
+## Set connection mode and connect
+## @param maincloud: true to use maincloud, false for local
+func set_connection_mode(maincloud: bool) -> void:
+	use_maincloud = maincloud
+	current_server_url = MAINCLOUD_SERVER_URL if maincloud else LOCAL_SERVER_URL
+	current_module_name = MAINCLOUD_MODULE_NAME if maincloud else LOCAL_MODULE_NAME
+
+	print("=== Connection mode set to: %s ===" % ("MAINCLOUD" if maincloud else "LOCAL"))
+	print("  Server: %s" % current_server_url)
+	print("  Module: %s" % current_module_name)
 
 
 func connect_to_server():
 	print("Connecting to SpacetimeDB...")
+	print("  URL: %s" % current_server_url)
+	print("  Module: %s" % current_module_name)
+
 	var options = SpacetimeDBConnectionOptions.new()
-	options.one_time_token = true  # Anonymous sessions for now
+
+	# Check if we have an auth token
+	if SpacetimeAuth.is_authenticated() and not SpacetimeAuth.is_token_expired():
+		print("  ✅ Using authenticated connection")
+		options.auth_token = SpacetimeAuth.get_access_token()
+		options.one_time_token = false
+	else:
+		print("  ℹ️ Using anonymous connection")
+		options.one_time_token = true
+
 	options.compression = SpacetimeDBConnection.CompressionPreference.NONE
 	options.threading = true
 
-	SpacetimeDB.connect_db(SERVER_URL, MODULE_NAME, options)
+	SpacetimeDB.connect_db(current_server_url, current_module_name, options)
 
 
 func _on_spacetimedb_connected():

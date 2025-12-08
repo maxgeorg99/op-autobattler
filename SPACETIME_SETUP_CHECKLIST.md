@@ -150,14 +150,14 @@ The regular Start Battle button bypasses multiplayer. You should either:
 ```gdscript
 # In the start_battle_button script:
 func _ready():
-    # Hide button if in multiplayer mode
-    visible = false  # Or add proper check
+	# Hide button if in multiplayer mode
+	visible = false  # Or add proper check
 ```
 
 **Option B: Make it trigger matchmaking instead**
 ```gdscript
 func _on_pressed():
-    MultiplayerManager.join_queue()
+	MultiplayerManager.join_queue()
 ```
 
 ---

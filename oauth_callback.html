@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication - Godot Autobattler</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+        }
+
+        .icon {
+            font-size: 72px;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 32px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .code {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            font-size: 14px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: linear-gradient(135deg, #ea5455 0%, #feb692 100%);
+        }
+
+        .success {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="spinner"></div>
+        <h1>Processing Authentication...</h1>
+        <p>Please wait while we complete your login.</p>
+    </div>
+
+    <script>
+        // Extract query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const error = urlParams.get('error');
+        const errorDescription = urlParams.get('error_description');
+
+        const container = document.getElementById('container');
+
+        if (error) {
+            // Authentication error
+            container.classList.add('error');
+            container.innerHTML = `
+                <div class="icon">❌</div>
+                <h1>Authentication Error</h1>
+                <p>${errorDescription || error}</p>
+                <p style="margin-top: 20px;">Please close this window and try again.</p>
+            `;
+        } else if (code) {
+            // Got authorization code - send it to game via custom URL scheme
+            // For desktop games, we can use a custom protocol or deep link
+
+            // Option 1: Try custom protocol (if registered)
+            const gameUrl = `godot-autobattler://oauth-callback?code=${encodeURIComponent(code)}`;
+
+            // Option 2: Store in localStorage and poll from game
+            try {
+                localStorage.setItem('oauth_code', code);
+                localStorage.setItem('oauth_timestamp', Date.now().toString());
+            } catch (e) {
+                console.error('Failed to store code:', e);
+            }
+
+            container.classList.add('success');
+            container.innerHTML = `
+                <div class="icon">✅</div>
+                <h1>Authentication Successful!</h1>
+                <p>You can now return to the game.</p>
+                <div class="code">Authorization code received</div>
+                <p style="font-size: 14px; opacity: 0.7; margin-top: 20px;">
+                    This window will close automatically in a few seconds...
+                </p>
+            `;
+
+            // Try to redirect to custom protocol
+            setTimeout(() => {
+                window.location.href = gameUrl;
+            }, 1000);
+
+            // Auto-close after 3 seconds
+            setTimeout(() => {
+                window.close();
+            }, 3000);
+        } else {
+            // No code or error - unexpected state
+            container.classList.add('error');
+            container.innerHTML = `
+                <div class="icon">⚠️</div>
+                <h1>Unexpected Response</h1>
+                <p>No authorization code received.</p>
+                <p style="margin-top: 20px;">Please close this window and try again.</p>
+            `;
+        }
+    </script>
+</body>
+</html>

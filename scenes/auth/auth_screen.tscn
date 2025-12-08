@@ -1,0 +1,116 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg1xw8v3jb5km"]
+
+[ext_resource type="Script" path="res://scenes/auth/auth_screen.gd" id="1_auth"]
+
+[node name="AuthScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_auth")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.15, 0.2, 1)
+
+[node name="LoginPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginPanel"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+text = "Autobattler"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+text = "Choose your connection mode"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProductionButton" type="Button" parent="LoginPanel/VBoxContainer"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "🌐 Maincloud (Authenticated)"
+
+[node name="HSeparator3" type="HSeparator" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="LocalButton" type="Button" parent="LoginPanel/VBoxContainer"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "🏠 Local Testing (Anonymous)"
+
+[node name="UserPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UserPanel"]
+layout_mode = 2
+
+[node name="WelcomeLabel" type="Label" parent="UserPanel/VBoxContainer"]
+layout_mode = 2
+text = "Welcome!"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UserPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="UsernameLabel" type="Label" parent="UserPanel/VBoxContainer"]
+layout_mode = 2
+text = "Signed in as: Player"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="UserPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="UserPanel/VBoxContainer"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "▶ Play Game"
+
+[node name="LogoutButton" type="Button" parent="UserPanel/VBoxContainer"]
+custom_minimum_size = Vector2(250, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Logout"
