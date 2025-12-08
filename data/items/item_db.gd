@@ -7,7 +7,7 @@ extends Resource
 func get_recipe_for_new_item(equipped_items: Array[Item], new_item: Item) -> ItemRecipe:
 	var components := _get_component_items(equipped_items)
 	
-	if not new_item.component or components.is_empty():
+	if components.is_empty() or not new_item.component:
 		return null
 	
 	return _get_recipe_from_components(components[0], new_item)

@@ -1,0 +1,11 @@
+/home/max/godot_autobattler_course/server/target/debug/deps/spacetimedb-0326bb4cb4fda18d.d: /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/lib.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/log_stopwatch.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/logger.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/rng.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/rt.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/table.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/../README.md
+
+/home/max/godot_autobattler_course/server/target/debug/deps/libspacetimedb-0326bb4cb4fda18d.rmeta: /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/lib.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/log_stopwatch.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/logger.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/rng.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/rt.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/table.rs /home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/../README.md
+
+/home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/lib.rs:
+/home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/log_stopwatch.rs:
+/home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/logger.rs:
+/home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/rng.rs:
+/home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/rt.rs:
+/home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/table.rs:
+/home/max/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spacetimedb-1.10.0/src/../README.md:

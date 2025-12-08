@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="SniperBonus" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="SniperBonus" load_steps=4 format=3 uid="uid://ivbt7330spcd"]
 
 [ext_resource type="Script" uid="uid://ejvqjqxvo541" path="res://components/modifier_value.gd" id="1"]
-[ext_resource type="Script" path="res://data/traits/bonuses/sniper_bonus.gd" id="2"]
+[ext_resource type="Script" uid="uid://b38l2p3y6kgdm" path="res://data/traits/bonuses/sniper_bonus.gd" id="2"]
 
 [sub_resource type="Resource" id="Resource_ad"]
 resource_local_to_scene = true
 script = ExtResource("1")
-percent_value = 0.20
+percent_value = 0.2
 source = "sniper_trait"
 metadata/_custom_type_script = "uid://ejvqjqxvo541"
 

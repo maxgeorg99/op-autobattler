@@ -1,15 +1,6 @@
 class_name BattleHandler
 extends Node
 
-const ZOMBIE_TEST_POSITIONS := [
-	Vector2i(8, 1),
-	Vector2i(7, 4),
-	Vector2i(8, 3),
-	Vector2i(9, 5),
-	Vector2i(9, 6)
-]
-const ZOMBIE := preload("res://data/enemies/zombie.tres")
-
 signal player_won
 signal enemy_won
 
@@ -18,6 +9,9 @@ signal enemy_won
 @export var game_area_unit_grid: UnitGrid
 @export var battle_unit_grid: UnitGrid
 @export var trait_tracker: TraitTracker
+
+var battle_seed: int = 0
+var battle_winner_team: int = -1
 
 @onready var scene_spawner: SceneSpawner = $SceneSpawner
 
@@ -60,7 +54,7 @@ func _clean_up_fight() -> void:
 
 func _prepare_fight() -> void:
 	get_tree().call_group("units", "hide")
-	
+
 	for unit_coord: Vector2i in game_area_unit_grid.get_all_occupied_tiles():
 		var unit: Unit = game_area_unit_grid.units[unit_coord]
 		var new_unit := scene_spawner.spawn_scene(battle_unit_grid) as BattleUnit
@@ -70,22 +64,33 @@ func _prepare_fight() -> void:
 		_setup_battle_unit(unit_coord, new_unit)
 		_add_items(unit, new_unit)
 		_add_trait_bonuses(new_unit)
-	
-	for unit_coord: Vector2i in ZOMBIE_TEST_POSITIONS:
-		var new_unit := scene_spawner.spawn_scene(battle_unit_grid) as BattleUnit
-		new_unit.add_to_group("enemy_units")
-		new_unit.stats = ZOMBIE
-		new_unit.stats.team = UnitStats.Team.ENEMY
-		_setup_battle_unit(unit_coord, new_unit)
-	
-	
+
+	# Note: Opponent units are now spawned by arena.gd from SpacetimeDB data
+
+	# Safety check: Don't start battle if no enemies
+	if get_tree().get_node_count_in_group("enemy_units") == 0:
+		print("Warning: No enemy units found. Battle cancelled.")
+		game_state.current_phase = GameState.Phase.PREPARATION
+		_clean_up_fight()
+		return
+
+
 	UnitNavigation.update_occupied_tiles()
 	var battle_units := get_tree().get_nodes_in_group("player_units") + get_tree().get_nodes_in_group("enemy_units")
-	battle_units.shuffle()
-	
+
+	# Deterministic shuffle using battle seed (Fisher-Yates algorithm)
+	var battle_rng := RandomNumberGenerator.new()
+	battle_rng.seed = battle_seed if battle_seed != 0 else hash(Time.get_ticks_msec())
+
+	for i in range(battle_units.size() - 1, 0, -1):
+		var j = battle_rng.randi_range(0, i)
+		var temp = battle_units[i]
+		battle_units[i] = battle_units[j]
+		battle_units[j] = temp
+
 	for battle_unit: BattleUnit in battle_units:
 		battle_unit.unit_ai.enabled = true
-		
+
 		for item: Item in battle_unit.item_handler.equipped_items:
 			item.apply_bonus_effect(battle_unit)
 
@@ -95,11 +100,13 @@ func _on_battle_unit_died() -> void:
 	# or we are quitting the game
 	if not get_tree() or game_state.current_phase == GameState.Phase.PREPARATION:
 		return
-	
+
 	if get_tree().get_node_count_in_group("enemy_units") == 0:
+		battle_winner_team = UnitStats.Team.PLAYER
 		game_state.current_phase = GameState.Phase.PREPARATION
 		player_won.emit()
 	if get_tree().get_node_count_in_group("player_units") == 0:
+		battle_winner_team = UnitStats.Team.ENEMY
 		game_state.current_phase = GameState.Phase.PREPARATION
 		enemy_won.emit()
 
@@ -122,3 +129,26 @@ func _on_game_state_changed() -> void:
 			_clean_up_fight()
 		GameState.Phase.BATTLE:
 			_prepare_fight()
+
+
+func set_battle_seed(seed: int) -> void:
+	battle_seed = seed
+	print("Battle seed set to: %d" % battle_seed)
+
+
+func get_battle_result() -> Dictionary:
+	return {
+		"winner_team": battle_winner_team,
+		"hash": _calculate_battle_hash()
+	}
+
+
+func _calculate_battle_hash() -> int:
+	var hash_value = 0
+	for unit in get_tree().get_nodes_in_group("player_units"):
+		if unit is BattleUnit:
+			hash_value ^= int(unit.stats.current_health)
+	for unit in get_tree().get_nodes_in_group("enemy_units"):
+		if unit is BattleUnit:
+			hash_value ^= int(unit.stats.current_health)
+	return hash_value

@@ -47,10 +47,12 @@ func _combine_components(recipe: ItemRecipe, new_item: Item) -> void:
 	var equipped_component := recipe.get_other_source_item(new_item)
 	var idx := Item.find_item(equipped_items, equipped_component)
 	_remove_item(idx)
-	equipped_items[idx] = recipe.result
-	equipped_items[idx].equip_index = idx
-	items_changed.emit()
-
+	
+	var result_item := recipe.result
+	if result_item:
+		result_item.equip_index = idx
+		equipped_items[idx] = result_item
+		items_changed.emit()
 
 func _try_equipping_item(item: Item) -> bool:
 	if equipped_items.size() >= MAX_ITEMS_HELD:

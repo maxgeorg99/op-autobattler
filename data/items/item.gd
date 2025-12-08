@@ -13,7 +13,7 @@ var equip_index := -1
 
 static func find_item(items: Array[Item], item: Item) -> int:
 	for i in items.size():
-		if items[i].equals(item):
+		if item.equals(items[i]):
 			return i
 	
 	return -1
