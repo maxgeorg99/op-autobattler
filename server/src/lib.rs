@@ -326,7 +326,7 @@ pub fn mark_ready(ctx: &ReducerContext, match_id: u64, is_ready: bool) -> Result
 pub fn submit_battle_result(
     ctx: &ReducerContext,
     match_id: u64,
-    winner_identity: Identity,
+    caller_won: bool,
 ) -> Result<(), String> {
     let caller = ctx.sender;
 
@@ -346,12 +346,17 @@ pub fn submit_battle_result(
         return Err("Battle not ready".to_string());
     }
 
-    // Verify winner is one of the players
-    if winner_identity != match_data.player1_identity
-        && winner_identity != match_data.player2_identity
-    {
-        return Err("Invalid winner identity".to_string());
-    }
+    // Determine winner based on who called and whether they won
+    let winner_identity = if caller_won {
+        caller
+    } else {
+        // Caller lost, so the other player won
+        if match_data.player1_identity == caller {
+            match_data.player2_identity
+        } else {
+            match_data.player1_identity
+        }
+    };
 
     // Update match with winner
     ctx.db.match_entry().match_id().update(Match {
@@ -372,6 +377,33 @@ pub fn submit_battle_result(
             current_match_id: None,
         });
     }
+
+    // Clean up board units and their items for this match
+    let units_to_delete: Vec<_> = ctx
+        .db
+        .board_unit()
+        .iter()
+        .filter(|u| u.match_id == match_id)
+        .collect();
+
+    for unit in units_to_delete {
+        // Delete associated items first
+        let items_to_delete: Vec<_> = ctx
+            .db
+            .unit_item()
+            .iter()
+            .filter(|i| i.board_unit_id == unit.id)
+            .collect();
+
+        for item in items_to_delete {
+            ctx.db.unit_item().id().delete(&item.id);
+        }
+
+        ctx.db.board_unit().id().delete(&unit.id);
+    }
+
+    // Delete the match entry itself
+    ctx.db.match_entry().match_id().delete(&match_id);
 
     Ok(())
 }
@@ -408,6 +440,42 @@ pub fn forfeit_match(ctx: &ReducerContext, match_id: u64) -> Result<(), String> 
         created_at: match_data.created_at,
         winner_identity: Some(winner),
     });
+
+    // Update both players back to queue state
+    for player_id in [match_data.player1_identity, match_data.player2_identity] {
+        ctx.db.player().identity().update(Player {
+            identity: player_id,
+            state: PlayerState::InQueue,
+            current_match_id: None,
+        });
+    }
+
+    // Clean up board units and their items for this match
+    let units_to_delete: Vec<_> = ctx
+        .db
+        .board_unit()
+        .iter()
+        .filter(|u| u.match_id == match_id)
+        .collect();
+
+    for unit in units_to_delete {
+        // Delete associated items first
+        let items_to_delete: Vec<_> = ctx
+            .db
+            .unit_item()
+            .iter()
+            .filter(|i| i.board_unit_id == unit.id)
+            .collect();
+
+        for item in items_to_delete {
+            ctx.db.unit_item().id().delete(&item.id);
+        }
+
+        ctx.db.board_unit().id().delete(&unit.id);
+    }
+
+    // Delete the match entry itself
+    ctx.db.match_entry().match_id().delete(&match_id);
 
     Ok(())
 }

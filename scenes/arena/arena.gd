@@ -215,14 +215,26 @@ func _apply_trait_bonuses_to_unit(battle_unit: BattleUnit, trait_counts: Diction
 
 func _on_player_won():
 	print("Player won the battle!")
-	var my_identity = MultiplayerManager.my_identity
-	MultiplayerManager.submit_battle_result(my_identity)
+	print("  Is player1: %s" % MultiplayerManager.is_player1)
+	print("  Match ID: %d" % MultiplayerManager.current_match_id)
+	# Only player1 submits the result to avoid race conditions
+	if MultiplayerManager.is_player1:
+		print("  Submitting: I won")
+		MultiplayerManager.submit_battle_result(true)
+	else:
+		print("  (Waiting for player1 to submit result)")
 
 
 func _on_enemy_won():
 	print("Enemy won the battle!")
-	var opponent_identity = MultiplayerManager.opponent_identity
-	MultiplayerManager.submit_battle_result(opponent_identity)
+	print("  Is player1: %s" % MultiplayerManager.is_player1)
+	print("  Match ID: %d" % MultiplayerManager.current_match_id)
+	# Only player1 submits the result to avoid race conditions
+	if MultiplayerManager.is_player1:
+		print("  Submitting: I lost (opponent won)")
+		MultiplayerManager.submit_battle_result(false)
+	else:
+		print("  (Waiting for player1 to submit result)")
 
 
 func _on_match_completed(winner: String):

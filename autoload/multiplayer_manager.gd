@@ -232,15 +232,15 @@ func mark_ready(ready: bool = true):
 
 # ===== Battle Result Functions =====
 
-func submit_battle_result(winner_identity: PackedByteArray):
+func submit_battle_result(i_won: bool):
 	if current_match_id < 0:
 		return
 
-	print("Submitting battle result. Winner: 0x%s" % winner_identity.hex_encode())
+	print("Submitting battle result. I won: %s" % i_won)
 	SpacetimeDB.call_reducer(
 		"submit_battle_result",
-		[current_match_id, winner_identity],
-		[&'u64', &'identity']
+		[current_match_id, i_won],
+		[&'u64', &'bool']
 	)
 
 

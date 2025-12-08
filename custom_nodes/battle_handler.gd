@@ -101,11 +101,19 @@ func _on_battle_unit_died() -> void:
 	if not get_tree() or game_state.current_phase == GameState.Phase.PREPARATION:
 		return
 
-	if get_tree().get_node_count_in_group("enemy_units") == 0:
+	var enemy_count = get_tree().get_node_count_in_group("enemy_units")
+	var player_count = get_tree().get_node_count_in_group("player_units")
+
+	if enemy_count == 0 and player_count == 0:
+		# Draw - both last units died simultaneously, player wins by default
 		battle_winner_team = UnitStats.Team.PLAYER
 		game_state.current_phase = GameState.Phase.PREPARATION
 		player_won.emit()
-	if get_tree().get_node_count_in_group("player_units") == 0:
+	elif enemy_count == 0:
+		battle_winner_team = UnitStats.Team.PLAYER
+		game_state.current_phase = GameState.Phase.PREPARATION
+		player_won.emit()
+	elif player_count == 0:
 		battle_winner_team = UnitStats.Team.ENEMY
 		game_state.current_phase = GameState.Phase.PREPARATION
 		enemy_won.emit()
